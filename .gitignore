@@ -1,0 +1,6 @@
+__pycache__/
+venv/
+.env
+backend/data/pythonlite.db
+node_modules/
+frontend/dist/
