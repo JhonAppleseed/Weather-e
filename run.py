@@ -7,6 +7,11 @@ def main():
         ["npm.cmd", "run", "dev"],
         cwd=os.path.join(os.path.dirname(__file__), "frontend")
     )
+
+    fetcher = subprocess.Popen(
+        ["python", "fetcher.py"],
+        cwd=os.path.join(os.path.dirname(__file__), "backend")
+    )
     
     backend = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "backend.main:app", "--reload"],
@@ -14,9 +19,11 @@ def main():
     )
 
     try:
+        fetcher.wait()
         frontend.wait()
         backend.wait()
     except KeyboardInterrupt:
+        fetcher.terminate()
         frontend.terminate()
         backend.terminate()
 

@@ -1,7 +1,11 @@
 import sqlite3
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "data/pythonlite.db")
 
 def create_table_helsinki():
-    with sqlite3.connect("./backend/data/pythonlite.db") as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         conn.execute("""CREATE TABLE IF NOT EXISTS weather_helsinki (
                      id INTEGER PRIMARY KEY,
                      time TEXT UNIQUE,
@@ -10,6 +14,6 @@ def create_table_helsinki():
                      )""")
 
 def get_connection():
-    conn = sqlite3.connect("./backend/data/pythonlite.db")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
