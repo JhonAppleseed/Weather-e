@@ -43,7 +43,7 @@ export default function HeroData({ dataUsage }) {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/")
+    fetch("http://localhost:8000/temp")
       .then((res) => res.json())
       .then((data) => {
         console.log("Raw data", data);

@@ -14,12 +14,23 @@ app.add_middleware(
   allow_headers = ["*"]
 )
 
-@app.get("/")
+@app.get("/temp")
 def fetch_all():
     try:
         conn = get_connection()
         with conn:
-            results = conn.execute("SELECT * FROM weather_helsinki").fetchall()
+            results = conn.execute("SELECT * FROM temp_helsinki").fetchall()
+
+        return results
+    except Exception as e:
+        print(e)
+
+@app.get("/air")
+def fetch_all():
+    try:
+        conn = get_connection()
+        with conn:
+            results = conn.execute("SELECT * FROM air_helsinki").fetchall()
 
         return results
     except Exception as e:

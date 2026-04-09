@@ -35,7 +35,7 @@ export default function Current() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/")
+    fetch("http://localhost:8000/temp")
       .then((res) => res.json())
       .then((data) => {
         console.log("Raw data", data);
