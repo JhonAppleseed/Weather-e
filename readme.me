@@ -1,1 +1,54 @@
-Run Project from weathere folder
+# Helsinki Weathere 🌦️
+
+A full-stack web app that pulls live weather data for Helsinki, stores it locally over time, and visualizes temperature and wind speed trends through a dashboard built in React — backend in FastAPI, database in SQLite.
+
+## What it does
+
+- Fetches real weather data from [Open-Meteo](https://open-meteo.com/) every hour automatically
+- Stores historical readings in a local SQLite database
+- Serves the data through a FastAPI REST API
+- Displays live charts and current conditions in a React dashboard
+
+## Stack
+
+- **Frontend** — React, Recharts, Tailwind CSS
+- **Backend** — Python, FastAPI
+- **Database** — SQLite
+- **Data** — Open-Meteo API (Helsinki, Finland)
+
+## Running locally
+
+Make sure you have Python and Node.js installed, then:
+
+```bash
+# Install Python dependencies
+pip install fastapi uvicorn requests
+
+# Install frontend dependencies
+cd frontend && npm install && cd ..
+
+# Run everything
+python run.py
+```
+
+Open `http://localhost:5173` in your browser.
+
+## Project structure
+
+```
+weathere/
+├── frontend/        # React app
+├── backend/
+│   ├── main.py      # FastAPI routes
+│   ├── database.py  # SQLite connection
+│   ├── fetcher.py   # Hourly data collection
+│   └── data/
+│       └── db.sqlite
+└── run.py           # Starts both servers
+```
+
+## Author
+
+[JohnAppleseedTM](https://github.com/JohnAppleseedTM)
+
+"""THIS FILE HAS BEEN WRITTEN BY CLAUDE.AI"""
