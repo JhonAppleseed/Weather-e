@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from "react";
 
 export default function TodayTemp({ dataUsage, name }) {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
   const [todayData, setTodayData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +38,7 @@ export default function TodayTemp({ dataUsage, name }) {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/temp")
+    fetch(`${API_URL}/temp`)
       .then((res) => res.json())
       .then((data) => {
         data = todayTime(data.reverse());

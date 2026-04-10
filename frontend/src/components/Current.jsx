@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function Current() {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
   const months = {
     "01": "Jan",
     "02": "Feb",
@@ -36,7 +37,7 @@ export default function Current() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/temp")
+    fetch(`${API_URL}/temp`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Raw data", data);
@@ -51,7 +52,7 @@ export default function Current() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8000/air")
+    fetch(`${API_URL}/air`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Raw data", data);
