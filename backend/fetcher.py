@@ -1,4 +1,4 @@
-from database import create_table_temp, create_table_air, get_connection
+from backend.database import create_table_temp, create_table_air, get_connection
 import requests
 import time
 
