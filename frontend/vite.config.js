@@ -4,6 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [tailwindcss()],
   preview: {
-    allowedHosts: ["weathere.up.railway.app"],
+    allowedHosts: [
+      "https://frontend-production-3f56.up.railway.app",
+      "weathere.up.railway.app",
+    ],
   },
 });
