@@ -12,7 +12,7 @@ origins = [
     "http://localhost:5173",
     "http://localhost:8000",
     "https://frontend-production-3f56.up.railway.app",
-    "https://weathere.up.railway.app/"
+    "https://weathere.up.railway.app"
     ]
 app.add_middleware(
     CORSMiddleware,
