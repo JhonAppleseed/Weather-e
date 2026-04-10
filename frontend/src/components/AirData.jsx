@@ -36,18 +36,18 @@ export default function HeroData({ dataUsage }) {
         " " +
         item.time.slice(8, 10) +
         ", " +
-        item.time.slice(11);
+        item.time.slice(11, item.time.length);
       // temp_time = temp_time;
       item.time = temp_time;
     });
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/temp")
+    fetch("http://localhost:8000/air")
       .then((res) => res.json())
       .then((data) => {
         console.log("Raw data", data);
-        parseTime(data.reverse());
+        parseTime(data);
         setHeroData(data);
         setLoading(false);
       })
@@ -58,33 +58,34 @@ export default function HeroData({ dataUsage }) {
   }, []);
 
   return (
-    <div className="bg-[#21252a] flex flex-col gap-4 rounded-xl p-[1.2em] px-[4vw] border-solid w-full border-[#42454b] border">
-      <AreaChart
-        width="100%"
-        height={260}
-        data={heroData}
-        style={{ background: "#ff000" }}
-        margin={{ right: 12 }}
-      >
-        <defs>
-          <linearGradient id="tealGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#1D9E75" stopOpacity={0.85} />
-            <stop offset="95%" stopColor="#1D9E75" stopOpacity={0.25} />
-          </linearGradient>
-        </defs>
-        <CartesianGrid stroke="rgba(255,255,255,0.08)" />
-        <XAxis dataKey="time" />
-        <YAxis />
-        <Tooltip />
-        <Area
-          type="monotone"
-          dataKey={dataUsage}
-          stroke="#1D9E75"
-          strokeWidth={2}
-          fill="url(#tealGradient)"
-          dot={false}
-        />
-      </AreaChart>
-    </div>
+    <AreaChart
+      width="100%"
+      height={400}
+      data={heroData}
+      style={{ background: "#ff000" }}
+      margin={{ bottom: 20, left: 6, right: 12 }}
+    >
+      <defs>
+        <linearGradient id="tealGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="5%" stopColor="#1D9E75" stopOpacity={0.85} />
+          <stop offset="95%" stopColor="#1D9E75" stopOpacity={0.25} />
+        </linearGradient>
+      </defs>
+      <CartesianGrid stroke="rgba(255,255,255,0.08)" />
+      <XAxis
+        dataKey="time"
+        label={{ value: "Time", position: "insideBottom", offset: -16 }}
+      />
+      <YAxis />
+      <Tooltip />
+      <Area
+        type="monotone"
+        dataKey={dataUsage}
+        stroke="#1D9E75"
+        strokeWidth={2}
+        fill="url(#tealGradient)"
+        dot={false}
+      />
+    </AreaChart>
   );
 }

@@ -1,65 +1,50 @@
 import HeroData from "./components/HeroData";
 import Current from "./components/Current";
-import { useState } from "react";
+import Air from "./components/AirData";
+import Today from "./components/Today";
+import TodayAir from "./components/TodayAir";
+import { useEffect, useState } from "react";
 
 const App = () => {
-  const [tempIsActive, setTempIsActive] = useState(false);
-  const [windSpeedIsActive, setWindSpeedIsActive] = useState(false);
-
-  const changeBool = (item) => {
-    if (item == "temp") {
-      setTempIsActive(!tempIsActive);
-    }
-
-    if (item == "windspeed") {
-      setWindSpeedIsActive(!windSpeedIsActive);
-    }
-  };
-
   return (
-    <>
-      <h1 className="text-[6ch] font-bold mt-20 text-white text-center">
-        Weather In Helsinki
-      </h1>
-      <div className="flex flex-col items-center py-4 gap-2">
-        <h1 className="text-white text-[3ch] font-bold">Current</h1>
+    <div className="pb-[2%] px-[2%]">
+      <div className=" flex justify-between py-[1.2em]">
+        <div className="flex items-center gap-[1em]">
+          <img
+            className="w-[18%] cursor-pointer"
+            src="/src/assets/favpng.png"
+            alt=""
+          />
+          <h1 className="text-white font-bold text-[2.2ch]">WeatherE</h1>
+        </div>
+        <div className="flex gap-[0.4em] items-center">
+          <img
+            className="invert-50 w-[14%]"
+            src="/src/assets/location.svg"
+            alt=""
+          />
+          <span className="text-stone-400 mr-[0.5em] text-[1.3ch] text-nowrap">
+            Helsinki, Finland
+          </span>
+          <span
+            className="text-stone-400 text-[1.5ch] py-1 px-2.5 bg-[#2e333c] rounded-2xl cursor-pointer hover:text-stone-100 transition-all duration-200"
+            onClick={() => window.location.reload()}
+          >
+            ⟳
+          </span>
+        </div>
+      </div>
+      {/* Current */}
+      <div className="flex flex-col items-center gap-[1em]">
         <Current />
-      </div>
-      <div className="p-4 gap-20 h-full items-center flex flex-col">
-        <div className="flex flex-col gap-4 w-full items-center h-1/2">
-          <h2 className="text-white font-semibold text-[3ch]">Temperature</h2>
-          {tempIsActive ? (
-            <div className="bg-[#001329] shadow-xl/30  flex w-1/2 rounded-xl pl-4 pr-10 py-6">
-              <HeroData dataUsage={"temp"} />
-            </div>
-          ) : (
-            <></>
-          )}
-          <button
-            onClick={() => changeBool("temp")}
-            className="bg-[#001329] shadow-xl/30 px-4 py-2 rounded-xl text-white cursor-pointer"
-          >
-            {tempIsActive ? "Close" : "Open Graph"}
-          </button>
-        </div>
-        <div className="flex flex-col gap-4 w-full items-center h-1/2">
-          <h2 className="text-white font-semibold text-[3ch]">Wind Speed</h2>
-          {windSpeedIsActive ? (
-            <div className="bg-[#001329] shadow-xl/30 flex w-1/2 rounded-xl pl-4 pr-10 py-6">
-              <HeroData dataUsage={"windspeed"} />
-            </div>
-          ) : (
-            <></>
-          )}
-          <button
-            onClick={() => changeBool("windspeed")}
-            className="bg-[#001329] shadow-xl/30 px-4 py-2 rounded-xl text-white cursor-pointer"
-          >
-            {windSpeedIsActive ? "Close" : "Open Graph"}
-          </button>
+        <Today dataUsage={"temp"} name={"Temperature"} />
+        <div className="flex gap-[1em] w-full">
+          <Today dataUsage={"windspeed"} name={"Windspeed"} />
+          <TodayAir dataUsage={"rain"} name={"Rain"} />
         </div>
       </div>
-    </>
+      {/* End --- Weather today */}
+    </div>
   );
 };
 export default App;
